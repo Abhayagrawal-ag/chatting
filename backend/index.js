@@ -63,7 +63,7 @@ io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
   socket.on("send_message", ({ name, message, room }) => {
-    const msgData = { name, message };
+    const msgData = { name, message, room };
 
     // ✅ Join the specific room based on accessCode
     socket.join(room);
