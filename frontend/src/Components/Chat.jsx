@@ -112,7 +112,6 @@ const Chat = () => {
 
   const name = localStorage.getItem("userName");
   const accessCode = localStorage.getItem("accessCode")?.toLowerCase();
-
   const allowedCodes = ["abhay123", "agrawal123", "chat123", "realtime123"];
 
   useEffect(() => {
@@ -125,8 +124,14 @@ const Chat = () => {
       return;
     }
 
+    // ✅ Join room on connect
+    socket.emit("join_room", accessCode);
+
+    // ✅ Listen for messages of this room
     socket.on("receive_message", (data) => {
-      setChat((prev) => [...prev, data]);
+      if (data.room === accessCode) {
+        setChat((prev) => [...prev, data]);
+      }
     });
 
     return () => {
@@ -142,7 +147,8 @@ const Chat = () => {
     e.preventDefault();
     if (msg.trim() === "") return;
 
-    const newMsg = { name, message: msg };
+    // ✅ Attach room to message
+    const newMsg = { name, message: msg, room: accessCode };
     socket.emit("send_message", newMsg);
     setMsg("");
   };
@@ -173,10 +179,7 @@ const Chat = () => {
       </div>
 
       {/* Input */}
-      <form
-        onSubmit={sendMessage}
-        className="p-4 border-t flex gap-2 bg-white"
-      >
+      <form onSubmit={sendMessage} className="p-4 border-t flex gap-2 bg-white">
         <input
           type="text"
           value={msg}
@@ -196,5 +199,6 @@ const Chat = () => {
 };
 
 export default Chat;
+
 
 
