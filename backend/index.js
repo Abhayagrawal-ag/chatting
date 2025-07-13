@@ -3,8 +3,8 @@ import express from "express";
 import http from "http";
 import { Server } from "socket.io";
 import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
+// import path from "path";
+// import { fileURLToPath } from "url";
 import dotenv from 'dotenv'
 dotenv.config();
 
@@ -14,15 +14,15 @@ const PORT = process.env.PORT || 3000;
 
 
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
-// Serve static files from React dist
-app.use(express.static(path.join(__dirname, "frontend", "dist")));
+// // Serve static files from React dist
+// app.use(express.static(path.join(__dirname, "frontend", "dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+// });
 
 
 const server = http.createServer(app);
