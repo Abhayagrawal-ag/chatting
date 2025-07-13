@@ -21,6 +21,7 @@ const Home = () => {
             🙋 <span className="font-semibold">User Identity:</span> Enter your name before chatting to identify yourself.<br />
             🧠 <span className="font-semibold">No Chat Storage:</span> Your messages are temporary and disappear after refresh.
           </p>
+          <br></br>
 
           <button
             onClick={() => navigate("/entercode")}
