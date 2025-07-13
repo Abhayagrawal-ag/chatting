@@ -1,3 +1,4 @@
+
 // // src/components/Chat.jsx
 // import { useEffect, useState, useRef } from "react";
 // import { useNavigate } from "react-router-dom";
@@ -42,16 +43,18 @@
 //     if (msg.trim() === "") return;
 
 //     const newMsg = { name, message: msg };
-//     socket.emit("send_message", newMsg); // only emit
-//     setMsg(""); // clear input
+//     socket.emit("send_message", newMsg);
+//     setMsg("");
 //   };
 
 //   return (
-//     <div className="flex flex-col h-screen bg-white">
+//     <div className="h-[100dvh] flex flex-col overflow-hidden bg-white">
+//       {/* Header */}
 //       <header className="bg-purple-600 text-white text-xl font-bold p-4 text-center">
 //         Chat App
 //       </header>
 
+//       {/* Scrollable Chat Area */}
 //       <div className="flex-1 overflow-y-auto p-4 space-y-2">
 //         {chat.map((c, i) => (
 //           <div
@@ -69,7 +72,11 @@
 //         <div ref={bottomRef} />
 //       </div>
 
-//       <form onSubmit={sendMessage} className="p-4 border-t flex gap-2 bg-white">
+//       {/* Input */}
+//       <form
+//         onSubmit={sendMessage}
+//         className="p-4 border-t flex gap-2 bg-white"
+//       >
 //         <input
 //           type="text"
 //           value={msg}
@@ -104,10 +111,12 @@ const Chat = () => {
   const bottomRef = useRef(null);
 
   const name = localStorage.getItem("userName");
-  const accessCode = localStorage.getItem("accessCode");
+  const accessCode = localStorage.getItem("accessCode")?.toLowerCase();
+
+  const allowedCodes = ["abhay123", "agrawal123", "chat123", "realtime123"];
 
   useEffect(() => {
-    if (!accessCode || accessCode.toLowerCase() !== "abhay123") {
+    if (!accessCode || !allowedCodes.includes(accessCode)) {
       navigate("/");
       return;
     }
@@ -187,4 +196,5 @@ const Chat = () => {
 };
 
 export default Chat;
+
 
