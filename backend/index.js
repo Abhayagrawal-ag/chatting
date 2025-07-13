@@ -12,11 +12,6 @@ const app = express();
 app.use(cors("https://chatting-frontend-j6ta.onrender.com"));
 const PORT = process.env.PORT || 3000;
 
-
-
-
-
-
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
