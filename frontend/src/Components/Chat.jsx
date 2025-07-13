@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 
-const socket = io("https://chatting-backend-ppej.onrender.com");
+const socket = io("https://chatting-backend-kua2.onrender.com");
 
 const Chat = () => {
   const navigate = useNavigate();
